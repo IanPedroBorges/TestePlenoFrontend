@@ -9,6 +9,8 @@ import {
   validatePassword,
 } from "../validations/ValidationsInputsUser";
 
+import style from "../styles/login.module.css";
+
 import { LocalStorageContext } from "../context/LocalStorageContext";
 import { initialLoginState, LoginType } from "../types/localStorageType";
 
@@ -43,131 +45,82 @@ export default function Login() {
       return;
     }
 
-    if (
-      inputsLogin.email === "usuario@exemplo.com" &&
-      inputsLogin.password === "senha123"
-    ) {
-      if (remember) setLogin(inputsLogin);
-      else setLogin(initialLoginState);
-      navigate("/home");
-    } else {
-      setErrorMessage("Usuário ou senha inválidos.");
-    }
+    if (remember) setLogin(inputsLogin);
+    else setLogin(initialLoginState);
+    navigate("/home");
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center"
-      style={{ backgroundColor: "#01121F" }}
-    >
-        <div className="absolute top-10 left-1/2 transform -translate-x-1/2">
-        <img src={logo} alt="Logo" className="w-60 h-auto" />
-      </div>
+    <div className={style.main}>
+      <img src={logo} alt="logo" />
 
-      <form
-        onSubmit={handleLogin}
-        className=" py-12 rounded-2xl shadow-xl w-full max-w-md relative"
-        style={{ backgroundColor: "#021A30", paddingInline: "2vw" }}
-      >
-        <h1 className="text-4xl mb-8 font-bold text-white text-center">
-          Login
-        </h1>
-
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-[#767F89] mb-1"
-            style={{ color: "#868E96" }}
-          >
-            Email
+      <form action="" className={style.form} onSubmit={handleLogin}>
+        <h1 className={style.title}>Login</h1>
+        <div>
+          <label htmlFor="email" className={style.label}>
+            E-mail
           </label>
           <input
-            type="text"
+            type="email"
             id="email"
-            placeholder="E-mail"
-            className="w-full p-3 rounded border border-[#F8F9FA] bg-gray-800 text-white"
             value={inputsLogin.email}
             onChange={handleInputChange}
-            style={{ height: "45px" }}
+            className={style.input}
           />
           {validateEmail(inputsLogin.email).error && (
-            <p className="text-red-500 text-sm mt-1">
+            <p className={style.error}>
               {validateEmail(inputsLogin.email).message}
             </p>
           )}
         </div>
-
-        <div className="mb-4 relative">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-[#767F89] mb-1"
-            style={{ color: "#868E96" }}
-          >
+        <div className={style.passwordContainer}>
+          <label htmlFor="password" className={style.label}>
             Senha
           </label>
           <input
             type={showPassword ? "text" : "password"}
             id="password"
-            placeholder="Senha"
-            className="w-full p-3 rounded border border-[#F8F9FA] bg-gray-800 text-white"
             value={inputsLogin.password}
             onChange={handleInputChange}
-            style={{ height: "45px" }}
+            className={style.input}
           />
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-1/2 h-full text-white"
-            style={{ cursor: "pointer" }}
+            className={style.eyeIcon}
           >
             {showPassword ? (
-              <EyeSlashIcon className="h-6 w-6" />
+              <EyeSlashIcon className="w-5 h-5" />
             ) : (
-              <EyeIcon className="h-6 w-6" />
+              <EyeIcon className="w-5 h-5" />
             )}
           </button>
           {validatePassword(inputsLogin.password).error && (
-            <p className="text-red-500 text-sm mt-1">
+            <p className={style.error}>
               {validatePassword(inputsLogin.password).message}
             </p>
           )}
         </div>
-
-        <button
-          type="submit"
-          className="w-full py-2 rounded text-white font-semibold transition"
-          style={{ backgroundColor: "#8B1D07", cursor: "pointer" }}
-        >
-          Login
-        </button>
-        {errorMessage && (
-          <p className="text-red-500 text-center mt-3">{errorMessage}</p>
-        )}
-
-        <div className="flex justify-center items-center mt-4 text-sm text-gray-600">
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              className="mr-2"
-              checked={remember}
-              onChange={() => setRemember((prev) => !prev)}
-            />
+        <div className={style.rememberContainer}>
+          <input
+            type="checkbox"
+            id="remember"
+            checked={remember}
+            onChange={() => setRemember((prev) => !prev)}
+            className={style.checkbox}
+          />
+          <label htmlFor="remember" className={style.rememberLabel}>
             Lembrar-me
           </label>
         </div>
-
-        <p className="text-center mt-4" style={{ color: "#868E96" }}>
-          Ainda não possui uma conta?
-        </p>
-
-        <button
-          type="button"
-          onClick={() => navigate("/register")}
-          className="w-full py-2 rounded text-white font-semibold transition mt-4"
-          style={{ backgroundColor: "#868E96", cursor: "pointer" }}
-        >
-          Cadastre-se
+        {errorMessage && <p className={style.error}>{errorMessage}</p>}
+        <button type="submit" className={style.button}>
+          Entrar
         </button>
+        <p className={style.registerText}>Ainda não possui uma conta? </p>
+        <Link to="/register" className={style.registerLink}>
+          Cadastre-se
+        </Link>
       </form>
     </div>
   );
