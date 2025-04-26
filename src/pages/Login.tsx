@@ -1,4 +1,3 @@
-// src/pages/Login.tsx
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
@@ -13,6 +12,8 @@ import style from "../styles/login.module.css";
 
 import { LocalStorageContext } from "../context/LocalStorageContext";
 import { initialLoginState, LoginType } from "../types/localStorageType";
+
+import { ResponseLogin } from "../Mocks/login";
 
 export default function Login() {
   const [inputsLogin, setInputsLogin] = useState<LoginType>(initialLoginState);
@@ -39,27 +40,36 @@ export default function Login() {
     setErrorMessage("");
 
     const emailErr = validateEmail(inputsLogin.email);
-    const passErr = validatePassword(inputsLogin.password);
+    const passErr  = validatePassword(inputsLogin.password);
     if (emailErr.error || passErr.error) {
       setErrorMessage("Preencha corretamente os campos.");
       return;
     }
 
-    if (remember) setLogin(inputsLogin);
-    else setLogin(initialLoginState);
-    navigate("/home");
+    const response = ResponseLogin({
+      Email: inputsLogin.email,
+      Senha: inputsLogin.password,
+    });
+
+    if (response.status === 200) {
+      alert(response.data.mensagem);
+      if (remember) setLogin(inputsLogin);
+      else          setLogin(initialLoginState);
+      navigate("/home");
+    } else {
+      setErrorMessage("Usuário ou senha inválidos.");
+    }
   };
 
   return (
     <div className={style.main}>
       <img src={logo} alt="logo" />
 
-      <form action="" className={style.form} onSubmit={handleLogin}>
+      <form className={style.form} onSubmit={handleLogin}>
         <h1 className={style.title}>Login</h1>
+
         <div>
-          <label htmlFor="email" className={style.label}>
-            E-mail
-          </label>
+          <label htmlFor="email" className={style.label}>E-mail</label>
           <input
             type="email"
             id="email"
@@ -73,10 +83,9 @@ export default function Login() {
             </p>
           )}
         </div>
+
         <div className={style.passwordContainer}>
-          <label htmlFor="password" className={style.label}>
-            Senha
-          </label>
+          <label htmlFor="password" className={style.label}>Senha</label>
           <input
             type={showPassword ? "text" : "password"}
             id="password"
@@ -89,11 +98,7 @@ export default function Login() {
             onClick={() => setShowPassword((prev) => !prev)}
             className={style.eyeIcon}
           >
-            {showPassword ? (
-              <EyeSlashIcon className="w-5 h-5" />
-            ) : (
-              <EyeIcon className="w-5 h-5" />
-            )}
+            {showPassword ? <EyeSlashIcon className="w-5 h-5" /> : <EyeIcon className="w-5 h-5" />}
           </button>
           {validatePassword(inputsLogin.password).error && (
             <p className={style.error}>
@@ -101,6 +106,7 @@ export default function Login() {
             </p>
           )}
         </div>
+
         <div className={style.rememberContainer}>
           <input
             type="checkbox"
@@ -113,14 +119,13 @@ export default function Login() {
             Lembrar-me
           </label>
         </div>
+
         {errorMessage && <p className={style.error}>{errorMessage}</p>}
-        <button type="submit" className={style.button}>
-          Entrar
-        </button>
-        <p className={style.registerText}>Ainda não possui uma conta? </p>
-        <Link to="/register" className={style.registerLink}>
-          Cadastre-se
-        </Link>
+
+        <button type="submit" className={style.button}>Entrar</button>
+
+        <p className={style.registerText}>Ainda não possui uma conta?</p>
+        <Link to="/register" className={style.registerLink}>Cadastre-se</Link>
       </form>
     </div>
   );
