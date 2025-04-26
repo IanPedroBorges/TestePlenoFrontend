@@ -14,8 +14,8 @@ Este é um projeto de exemplo que implementa:
 
 1. Clone este repositório e entre na pasta:
    ```bash
-   git clone <URL_DO_SEU_REPO>
-   cd <PASTA_DO_PROJETO>
+   git clone <git@github.com:IanPedroBorges/TestePlenoFrontend.git>
+   cd <TESTEPLENOFRONTEND>
 ```
 
 2. Instale as dependências:
