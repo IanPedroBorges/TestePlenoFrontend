@@ -1,0 +1,117 @@
+.main {
+    background: #01121F;
+    min-height: 100vh;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .header {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .logo {
+    height: 5rem;
+  }
+  
+  .logoutButton {
+    background: #8B1D07;
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    cursor: pointer;
+  }
+  .logoutButton:hover {
+    background: #a8321d;
+  }
+  
+  .carouselContainer {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+  }
+  
+  .navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .navButton.left { left: 0.5rem; }
+  .navButton.right { right: 0.5rem; }
+  
+  .grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, auto);
+    gap: 1rem;
+    padding: 1rem 3rem;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  .grid::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .card {
+    background: #021A30;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 14rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cardTitle {
+    font-size: 1.1rem;
+    color: #F8F9FA;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .cardMeta {
+    font-size: 0.85rem;
+    color: #868E96;
+    margin-bottom: 0.5rem;
+  }
+  .author { font-weight: 500; }
+  .editor { font-style: italic; }
+  
+  .pubDate {
+    font-size: 0.75rem;
+    color: #A4A1A0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .rating {
+    margin-top: auto;
+    font-size: 0.9rem;
+    color: #FFD700;
+    font-weight: 600;
+    text-align: right;
+  }
+  
