@@ -1,35 +1,32 @@
-## INSTRUÇÕES PARA O TESTE TÉCNICO
+# Projeto Capys
 
-- Crie um fork deste projeto (https://github.com/CAPYS-IT/TestePlenoFrontend).
-  É preciso estar logado na sua conta Github;
-- Quando você começar, faça um commit vazio com a mensagem "Iniciando o teste de tecnologia" e quando terminar, faça o commit com uma mensagem "Finalizado o teste de tecnologia";
-- Commit após cada ciclo de refatoração pelo menos;
-- Não use branches;
-- Você deve prover evidências suficientes de que sua solução está completa indicando, no mínimo, que ela funciona;
-- Não há restrição quanto ao uso de bibliotecas de apoio;
-- No final envie para o RH o link do seu projeto.
-- Os arquivos de Mocks estão salvos na pasta src/mocks
-- O link para acesso ao arquivo Figma: (https://www.figma.com/design/pn0n2pyoyKHTwcYSTgwpxq/Teste-Capys?node-id=13099-314&m=dev&t=XASy4RX6R3lgKpYS-1)
+Este é um projeto de exemplo que implementa:
+
+- **Login** com validação de e-mail e senha, botão “olhinho” para mostrar/esconder senha e opção “Lembrar-me”.
+- **Registro** com inputs: Nome, E-mail, Senha, Confirmar Senha, Bio, Contato e Seleção de Cargo.
+- **Home** com header (logo + botão “Sair”) e carrossel em duas linhas exibindo livros de um mock.
+
+> **Obs:** O foco principal foi entregar todas as funcionalidades antes de polir o estilo visual.
 
 ---
 
-## O TESTE
+## 🔧 Como Rodar
 
-- Criar layout de Login seguindo o protótipo Figma;
-- Criar layout da pagina home seguindo o protótipo Figma;
+1. Clone este repositório e entre na pasta:
+   ```bash
+   git clone <URL_DO_SEU_REPO>
+   cd <PASTA_DO_PROJETO>
+```
 
----
+2. Instale as dependências:
+  ```bash
+yarn
+```
 
-## BÔNUS
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   yarn dev
+```
 
-- Componentes bem estruturados
-- Uso de programas para mockar os dados como por exemplo mockoon. (carregar o arquivo json do mockoon junto com o projeto para avaliação)
-
----
-
-## PONTOS QUE SERÃO AVALIADOS
-
-- Boas práticas;
-- Estrutura de código e pastas;
-- Layout;
-- Estilização;
+Acesse a aplicação em:
+👉 http://localhost:5173/
